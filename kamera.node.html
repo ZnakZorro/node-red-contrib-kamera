@@ -1,0 +1,88 @@
+
+<script type="text/javascript">
+    RED.nodes.registerType('kamera',{
+        category: 'znakzorro',
+        color: '#6699bb',
+        defaults: {
+            name: {value:"C4:7C:8D:61:9F:27"},
+            repeat: {value:"5"},
+			timerepeat: {value:"5"},            
+            interval: {value:"30"},
+			
+			BLEonoff: {value:true},
+			checkrepeat: {value:true},
+            readdata: {value:true},
+            readbatt: {value:true},
+			bariera: {value:"50"}
+        },
+        inputs:1,
+        outputs:2,
+        icon: "bridge.png",
+        label: function() {
+            return this.name||"kamera";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="kamera">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> BLE ID</label>
+        <input type="text" id="node-input-name" placeholder="Mac ID">
+    </div>    
+    <div class="form-row">
+        <label for="node-input-repeat"><i class="icon-tag"></i>Try repeat</label>
+        <input type="text" id="node-input-repeat"  style="width: 25%;">
+    </div>
+    <div class="form-row">
+        <label for="node-input-timerepeat"><i class="icon-tag"></i>Time to try</label>
+        <input type="text" id="node-input-timerepeat"  style="width: 25%;"> minutes
+    </div>
+       <div class="form-row">
+        <label for="node-input-interval"><i class="icon-tag"></i>Interval</label>
+        <input type="text" id="node-input-interval"  style="width: 25%;"> minutes
+    </div>
+	
+	<div class="form-row">
+		<input type="checkbox" id="node-input-BLEonoff" style="display: inline-block; width: auto; vertical-align: top;">
+		<label for="node-input-BLEonoff" style="width: 25%;">BLE on/off</label>
+	</div>
+	<div class="form-row">
+		<input type="checkbox" id="node-input-checkrepeat" style="display: inline-block; width: auto; vertical-align: top;">
+		<label for="node-input-checkrepeat" style="width: 85%;">Repeat???</label>
+	</div>
+	
+	<div class="form-row">
+		<input type="checkbox" id="node-input-readdata" checked="true" style="display: inline-block; width: auto; vertical-align: top;">
+		<label for="node-input-readdata" style="width: 85%;">Read kamera data</label>
+	</div>
+	<div class="form-row">
+		<input type="checkbox" id="node-input-readbatt" checked style="display: inline-block; width: auto; vertical-align: top;">
+		<label for="node-input-readbatt" style="width: 85%;">Read kamera battery</label>
+	</div>
+	   <div class="form-row">
+		<label for="node-input-bariera"><i class="fa fa-search"></i> <span data-i18n="twitter.label.search">Bariera</span></label>
+		<select type="text" id="node-input-bariera" style="display: inline-block; vertical-align: middle; width:60%;">
+		    <option value="30">30%</option>
+		    <option value="40">40%</option>
+		    <option value="50">50%</option>
+		    <option value="60">60%</option>
+		    <option value="70">70%</option>
+		</select>
+	    </div>
+
+
+</script>
+
+<script type="text/x-red" data-help-name="kamera">
+    <h2>Node-red that read data from Xiaomi kamera mat</h2>
+    <p>Reading state of Xiaomi kamera mate @BLE</p>
+    <p><code>BLE ID</code> <b>Mac adrress of bluetooth</b></p>
+	<p><code>Interval</code> Reading data Interal in [minutes]</p>
+    <p><code>Try repeat</code> = How many times to tray if no result</p>
+    <p><code>Time to try</code> = Time to tray if no result in [minutes]</p>
+    <p><code>Read kamera data</code>  <b>Read kamera data</b></p>
+    <p><code>Read kamera battery</code> <i>Read kamera battery</i></p>
+    <p><code>Bariera</code>  <b>Trigger for moisture [%]</b></p>
+    
+    
+</script>
