@@ -2,25 +2,26 @@
 <script type="text/javascript">
 	RED.nodes.registerType('kamera',{
 		category: 'znakzorro',
-		color: '#ffaa22',
+		color: '#dd8822',
 		defaults: {
 			name: {value:"kamera"},
 			base64: {value:false},
 			rotate180: {value:false},
+			hflip: {value:false},
+			vflip: {value:false},
 			camerainfo: {value:false},
 			autoclick: {value:0},
 			screeninfo: {value:0},
-			
-			
 			timeout: {value:"1"},
 			size: {value:"1296x730"},
 			htmlafter: {value:"<hr />"}
 		},
+		icon: "camera.png",
 		inputs:1,
 		outputs:2,
-		icon: "white-globe.png",
+		
 		label: function() {
-			return this.name||"kamera";
+			return this.name || "Kamera";
 		}
 	});
 </script>
@@ -42,6 +43,16 @@
 		<input type="checkbox" id="node-input-rotate180" style="display:inline-block; width:auto; vertical-align:top;">
 		<label for="node-input-rotate180" style="width:70%;"> <span>Rotate 180 &deg;</span></label>
 	</div>	
+	<div class="form-row">
+		<label>&nbsp;</label>
+		<input type="checkbox" id="node-input-hflip" style="display:inline-block; width:auto; vertical-align:top;">
+		<label for="node-input-hflip" style="width:70%;"> <span>Horizontal flip</span></label>
+	</div>	
+	<div class="form-row">
+		<label>&nbsp;</label>
+		<input type="checkbox" id="node-input-vflip" style="display:inline-block; width:auto; vertical-align:top;">
+		<label for="node-input-vflip" style="width:70%;"> <span>Veritac flip</span></label>
+	</div>	
 	
 	<div class="form-row">
         <label for="node-input-timeout"><i class="icon-tag"></i>TimeOut</label>
@@ -49,7 +60,7 @@
     </div>
 	
    <div class="form-row">
-        <label for="node-input-size"><i class="fa fa-search"></i> <span data-i18n="twitter.label.search">Size WxH</span></label>
+        <label for="node-input-size"><i class="icon-tag"></i> <span data-i18n="twitter.label.search">Size WxH</span></label>
         <select type="text" id="node-input-size" style="display: inline-block; vertical-align: middle; width:60%;">
             <option value="60x40">60x40</option>
             <option value="120x80">120x80</option>
@@ -65,7 +76,7 @@
 	
 
    <div class="form-row">
-        <label for="node-input-autoclick"><i class="icon-tag"></i> Auto Click</label>
+        <label for="node-input-autoclick"><i class="icon-tag"></i> Auto Shot</label>
         <select type="text" id="node-input-autoclick" style="display: inline-block; vertical-align: middle; width:60%;">
             <option value="0">none</option>
             <option value="15">15sek</option>
@@ -109,9 +120,10 @@
 </script>
 
 <script type="text/x-red" data-help-name="kamera">
-    <h2>Node-red that ready for start</h2>
-    <p>Node-res @start</p>
+    <h2>node-red-contrib-kamera</h2>
+    <p>Module for shot picture from Raspeberry PI camera</p>
     <p><code>Node-red</code> <b>Node-red</b></p>
+	<p><a href="https://github.com/ZnakZorro/node-red-contrib-kamera" target="_blank">GitHub code</a></p>
     
     
 </script>
