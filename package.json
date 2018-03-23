@@ -1,10 +1,10 @@
 {
 	"name": "node-red-contrib-kamera",
-	"version": "0.0.1",
-	"description": "Node-red for kamera",
+	"version": "1.0.0",
+	"description": "Node-red for start kamera",
 	"main": "kamera.node.js",
 	"directories": {
-		
+		"example": "example"
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
@@ -16,9 +16,7 @@
 	"keywords": [
 		"node-red",
 		"sensors",
-		"kamera",
-		"camera"
-    "camera"
+		"kamera"
 	],
 	"author": "ZnakZorro",
 	"license": "MIT",
@@ -28,7 +26,7 @@
 	"homepage": "https://github.com/ZnakZorro/node-red-contrib-kamera#readme",
 	"node-red": {
 		"nodes": {
-			"flora": "kamera.node.js"
+			"kamera": "kamera.node.js"
 		}
 	}
 }
