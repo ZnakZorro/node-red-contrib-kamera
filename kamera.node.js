@@ -11,6 +11,8 @@ const spawn = require('child_process').spawn;
 			this.name = config.name;
 			this.timeout = config.timeout;
 			this.rotate180 = config.rotate180;
+			this.hflip = config.hflip;
+			this.vflip = config.vflip;
 			//this.camerainfo = config.camerainfo;
 			this.autoclick = config.autoclick;
 			this.screeninfo = config.screeninfo;
@@ -20,12 +22,15 @@ const spawn = require('child_process').spawn;
 				this.coding = this.base64 ? 'base64' : 'binary';
 			this.size = (config.size);
 			this.sizeXY = (config.size).split('x');
-			this.X = '800';
-			this.Y = '600';
+			this.X = '640';
+			this.Y = '480';
 			if (this.sizeXY) {this.X=this.sizeXY[0]; this.Y=this.sizeXY[1]; }
 			this.args = ["-w", this.X, "-h", this.Y, "-o", "-"];
-				if (this.rotate180)  {this.args = this.args.concat(['-rot', '180']);}
+				if (this.hflip)   {this.args = this.args.concat(['-hf']);}
+				if (this.vflip)   {this.args = this.args.concat(['-vf']);}
+				if (this.rotate180)   {this.args = this.args.concat(['-rot', '180']);}
 				if (this.screeninfo)  {this.args = this.args.concat(['-a', this.screeninfo]);}
+				if (this.timeout)     {this.args = this.args.concat(['-t', this.timeout]);}
 				this.extrameta ='<title>CamPI</title>';			
 				if (this.autoclick!=0) this.extrameta += '<meta http-equiv="refresh" content="'+this.autoclick+'">';
 
@@ -59,14 +64,16 @@ const spawn = require('child_process').spawn;
 							
 							
 							if (node.coding==='binary') {
-								let bufstr1 = bufarr.toString(node.coding);
+								//let bufstr1 = bufarr.toString(node.coding);
+								let bufstr1 = bufarr;
 								msg.payload = bufstr1;
 							}
 							if (node.coding==='base64') {
 								let bufstr2 = bufarr.toString(node.coding);
-								msg.payload = node.extrameta+'<img src="data:image/jpeg;base64,'+bufstr2+'" style="max-width:100%;" /><br /><br /><button onClick="location.reload()">Click</button>'
+								msg.payload = node.extrameta+'<img src="data:image/jpeg;base64,'+bufstr2+'" style="max-width:100%;" /><br /><br /><button onClick="location.reload()">Shot</button>'
 								//+' <button onClick="setInterval(function(){location.reload()},10000)"> re 10s</button>'
 								//+' <button onClick="setInterval(function(){location.reload()},60000)"> re 1min</button>'
+								//<button onClick="setInterval(function(){location.reload()},10000)"> reload 10s</button>
 								+node.htmlafter;
 							}
 							
