@@ -1,6 +1,6 @@
 {
 	"name": "node-red-contrib-kamera",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "Node-red for start kamera",
 	"main": "kamera.node.js",
 	"directories": {
